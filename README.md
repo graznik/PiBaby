@@ -1,4 +1,4 @@
-Babyphone
+PiBaby
 =========
 
 Raspberry Pi Babyphone
