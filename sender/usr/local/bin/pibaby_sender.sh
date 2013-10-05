@@ -107,10 +107,12 @@ check_for_receiver() {
 	    logger "Host is down."
 	    sleep 5
 	else
+	    # FIXME: workaround
+	    ssh ${REC_USER}@${REC_ADDR} killall -9 aplay
+	    logger 'Found receiver, killed running aplay processes.'
 	    return 0
 	fi
     done
-    logger 'Found receiver'
 }
 
 bphone() {
