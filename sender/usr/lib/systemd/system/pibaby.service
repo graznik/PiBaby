@@ -1,0 +1,10 @@
+[Unit]
+Description=RbP Babyphone Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/sender.sh
+Type=forking
+
+[Install]
+WantedBy=multi-user.target

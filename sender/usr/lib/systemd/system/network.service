@@ -1,0 +1,16 @@
+[Unit]
+Description=Network Connectivity
+Wants=network.target
+Before=network.target
+BindsTo=sys-subsystem-net-devices-wlan0.device
+After=sys-subsystem-net-devices-wlan0.device
+ 
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/sbin/ip link set dev wlan0 up
+ExecStart=/usr/sbin/wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant.conf
+ExecStart=/sbin/dhcpcd wlan0
+ 
+[Install]
+WantedBy=multi-user.target

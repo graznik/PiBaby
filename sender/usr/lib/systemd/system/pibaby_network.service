@@ -1,0 +1,19 @@
+[Unit]
+Description=Wireless Static IP Connectivity
+Wants=network.target
+Before=network.target
+BindsTo=sys-subsystem-net-devices-wlan0.device
+After=sys-subsystem-net-devices-wlan0.device
+ 
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+EnvironmentFile=/etc/conf.d/network
+ExecStart=/sbin/ip link set dev ${interface} up
+ExecStart=/sbin/ip addr add ${address}/${netmask} broadcast ${broadcast} dev ${interface}
+ 
+ExecStop=/sbin/ip addr flush dev ${interface}
+ExecStop=/sbin/ip link set dev ${interface} down
+ 
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Software Access Point Daemon
+After=network.target
+ 
+[Service]
+ExecStart=/usr/bin/hostapd /etc/hostapd/hostapd.conf
+Type=simple
+ 
+[Install]
+WantedBy=multi-user.target
