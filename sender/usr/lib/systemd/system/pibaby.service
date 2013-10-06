@@ -5,7 +5,6 @@ After=network.target
 [Service]
 ExecStart=/usr/local/bin/sender.sh
 Type=forking
-WatchdogSec=2s
 Restart=on-failure
 
 [Install]
